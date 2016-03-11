@@ -1,6 +1,7 @@
 #' A Candidate object 
 #' 
-#' Object of class \code{Candidate} are created by the \code{createCandidate} function.
+#' Object of class \code{Candidate} are created by the \code{createCandidate} function. Objects of
+#' this class have their own \code{show} and \code{print} methods.
 #'
 #' 
 #' An object of the class `Candidate' has the following slots:
@@ -12,7 +13,7 @@
 #' }
 #'
 #' @author Andy Stone: \email{arstone@@wustl.edu}
-#' @aliases Candidate-class initialize,Candidate-method
+#' @aliases Candidate-class initialize,Candidate-method show,Candidate-method 
 #' @rdname Candidate
 #' @export
 setClass(Class="Candidate", 
@@ -37,4 +38,22 @@ setMethod("initialize", "Candidate",
           }
 ) 
 
+#' @export
+setMethod(f="show",
+          # Class the method is used for
+          signature="Candidate",
+          # The method itself
+          definition=function(object){
+            show.df <- data.frame(object@name, object@delegatesWon, object@party, object@delegatesNeeded)
+            colnames(show.df) <- c("Name","Delegates Won","Party","Delegates Needed")
+            print(show.df)
+          }   
+)
+
+#' @export
+# Print method (print is a S3 function)
+print.Candidate <- function(candidate){
+  paste(paste(candidate.rubio@party, candidate.rubio@name), paste(candidate.rubio@delegatesWon, "Delegates Won"),
+           paste(candidate.rubio@delegatesNeeded, "Delegates Needed for Nomination"), sep=", ")
+}
 

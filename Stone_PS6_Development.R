@@ -93,7 +93,7 @@ setGeneric(name="propNeeded",
 
 setMethod(f="propNeeded",
           definition=function(candidate, remaining){
-            return(candidate@delegatesNeeded / remaining)
+            return((candidate@delegatesNeeded - candidate@delegatesWon) / remaining)
           }
 )
 

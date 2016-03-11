@@ -4,9 +4,11 @@
 \name{Candidate-class}
 \alias{Candidate-class}
 \alias{initialize,Candidate-method}
+\alias{show,Candidate-method}
 \title{A Candidate object}
 \description{
-Object of class \code{Candidate} are created by the \code{createCandidate} function.
+Object of class \code{Candidate} are created by the \code{createCandidate} function. Objects of
+this class have their own \code{show} and \code{print} methods.
 }
 \details{
 An object of the class `Candidate' has the following slots:
