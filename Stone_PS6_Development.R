@@ -24,6 +24,11 @@ Candidate <- setClass(Class="Candidate",
                       )
 )
 
+current.code <- as.package("candidatePack")
+load_all(current.code)
+document(current.code)
+
+
 # romney <- Candidate(name="Romney",delegatesWon=22, party="Republican", delegatesNeeded=1298)
 
 # Function to help user create a candidate
