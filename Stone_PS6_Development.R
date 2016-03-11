@@ -8,6 +8,7 @@ setwd("~/github/PS6")
 # Packages to be utilized 
 library(devtools); library(roxygen2)
 
+# Creating Candidate class
 Candidate <- setClass(Class="Candidate", 
                       slots = c(
                         name = "character",
@@ -23,10 +24,9 @@ Candidate <- setClass(Class="Candidate",
                       )
 )
 
-createCandidate <- setClass(Class="createCandidate")
-
 # romney <- Candidate(name="Romney",delegatesWon=22, party="Republican", delegatesNeeded=1298)
 
+# Function to help user create a candidate
 setGeneric(name="createCandidate",
            def=function(name, delegatesWon, party)
            {standardGeneric("createCandidate")}
@@ -39,7 +39,9 @@ setMethod(f="createCandidate",
           }
 )
 
+# candidate.webb <- createCandidate("Webb", 0, "Democratic")
 
+# Function that is called in order to calculate delegates needed
 setGeneric(name="neededCalculator",
            def=function(party)
            {standardGeneric("neededCalculator")}
@@ -47,10 +49,10 @@ setGeneric(name="neededCalculator",
 
 setMethod(f="neededCalculator",
           definition=function(party){
-            if(party=="R" | party=="Rep" | party=="Rep." | party=="Republican"){
+            if(party=="Republican"){
               return(1237)
             }
-            if(party=="D" | party=="Dem" | party=="Dem." | party=="Democrat" | party=="Democratic"){
+            if(party=="Democratic"){
               return(2383)
             }
             else{
@@ -59,6 +61,36 @@ setMethod(f="neededCalculator",
           }
 )
 
+# Show method
+setMethod(f="show",
+          # Class the method is used for
+          signature="Candidate",
+          # The method itself
+          definition=function(object){
+            show.df <- data.frame(object@name, object@delegatesWon, object@party, object@delegatesNeeded)
+            colnames(show.df) <- c("Name","Delegates Won","Party","Delegates Needed")
+            print(show.df)
+          }   
+)
+
+# Print method (print is a S3 function)
+print.Candidate <- function(candidate){
+  print(candidate@name)
+}
+
+
+# propNeeded function
+# pass as arguments an object of class Candidate and number of delegates remaining in the race
+setGeneric(name="propNeeded",
+           def=function(candidate, remaining)
+           {standardGeneric("propNeeded")}
+)
+
+setMethod(f="propNeeded",
+          definition=function(candidate, remaining){
+            return(candidate@delegatesNeeded / remaining)
+          }
+)
 
 
 
