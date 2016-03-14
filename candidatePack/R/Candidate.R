@@ -65,7 +65,7 @@ setMethod(f="show",
 #' @export
 # Print method (print is a S3 function)
 print.Candidate <- function(candidate){
-  paste(paste(candidate.rubio@party, candidate.rubio@name), paste(candidate.rubio@delegatesWon, "Delegates Won"),
-           paste(candidate.rubio@delegatesNeeded, "Delegates Needed for Nomination"), sep=", ")
+  paste(paste(candidate@party, candidate@name), paste(candidate@delegatesWon, "Delegates Won"),
+           paste(candidate@delegatesNeeded, "Delegates Needed for Nomination"), sep=", ")
 }
 
