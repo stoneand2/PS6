@@ -9,7 +9,7 @@
 \title{A Race object}
 \description{
 Obects of class \code{Race} help summarize the standing of the current presidential races. These
-objects have their own \code{print} methods.
+objects have their own \code{plot} method.
 }
 \details{
 An object of the class `Race' has the following slots:
@@ -24,7 +24,20 @@ secure to win his party's nomination.
 candidate. 
 }
 }
+\examples{
+cruz <- new("Candidate", name="Cruz", delegatesWon=372, party="Republican")
+trump <- new("Candidate", name="Trump", delegatesWon=464, party="Republican")
+kasich <- new("Candidate", name="Kasich", delegatesWon=63, party="Republican")
+rubio <- new("Candidate", name="Rubio", delegatesWon=166, party="Republican")
+republican.candidates <- list(cruz, trump, kasich, rubio)
+republican.race <- new("Race", candidates=republican.candidates, party="Republican")
+plot(x=republican.race)
+
+}
 \author{
 Andy Stone: \email{arstone@wustl.edu}
+}
+\seealso{
+\code{\link{createCandidate}}, \code{\link{Candidate}}
 }
 

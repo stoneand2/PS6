@@ -15,6 +15,17 @@
 #' \item \code{delegatesRemaining} The number of delegates that have yet to be allocated to a 
 #' candidate. 
 #' }
+#' 
+#' @examples
+#' cruz <- new("Candidate", name="Cruz", delegatesWon=372, party="Republican")
+#' trump <- new("Candidate", name="Trump", delegatesWon=464, party="Republican")
+#' kasich <- new("Candidate", name="Kasich", delegatesWon=63, party="Republican")
+#' rubio <- new("Candidate", name="Rubio", delegatesWon=166, party="Republican")
+#' republican.candidates <- list(cruz, trump, kasich, rubio)
+#' republican.race <- new("Race", candidates=republican.candidates, party="Republican")
+#' plot(x=republican.race)
+#' 
+#' @seealso \code{\link{createCandidate}}, \code{\link{Candidate}}
 #'
 #' @author Andy Stone: \email{arstone@@wustl.edu}
 #' @aliases Race-class initialize,Race-method plot,Race-method 
@@ -100,22 +111,6 @@ setMethod(f="plot",
                  labels="Delegates Yet \n to Be Allocated", cex=0.7)
           }   
 )
-
-# cruz <- new("Candidate", name="Cruz", delegatesWon=372, party="Republican")
-# trump <- new("Candidate", name="Trump", delegatesWon=464, party="Republican")
-# kasich <- new("Candidate", name="Kasich", delegatesWon=63, party="Republican")
-# rubio <- new("Candidate", name="Rubio", delegatesWon=166, party="Republican")
-# 
-# republican.candidates <- list(cruz, trump, kasich, rubio)
-# republican.race <- new("Race", candidates=republican.candidates, party="Republican")
-# plot(x=republican.race)
-
-# sanders <- new("Candidate", name="Sanders", delegatesWon=576, party="Democratic")
-# clinton <- new("Candidate", name="Clinton", delegatesWon=1239, party="Democratic")
-
-# democratic.candidates <- list(sanders, clinton)
-# democratic.race <- new("Race", candidates=democratic.candidates, party="Democratic")
-# plot(x=democratic.race)
 
 
 
