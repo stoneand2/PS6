@@ -17,12 +17,14 @@ as either `Republican' or `Democratic'.}
 }
 \value{
 An object of class `Candidate' containing
+\itemize{
  \item{name} The name of a presidential candidate.
  \item{delegatesWon} The number of delegates the presidential candidate has won. 
  \item{party} The party of the presidential candidate, either `Democratic' or `Republican'.
  \item{delegatesNeeded} The number of delegates the presidential candidate needs to secure to win 
- his party's nomination. This is automatically determined by calling the neededCalculator() function
- and passing it the party parameter.
+ his party's nomination. This is automatically determined through the initialize method called when
+ a new instance of the class `Candidate' is created.
+ }
 }
 \description{
 A user-friendly function to create an object of class `Candidate' and automatically determine

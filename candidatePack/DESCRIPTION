@@ -1,10 +1,18 @@
 Package: candidatePack
 Type: Package
-Title: What the package does (short line)
+Title: The candidatePack package allows the user to examine delegate counts for the 2016 presidential election.
 Version: 1.0
 Date: 2016-03-11
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Andy Stone
+Maintainer: Andy Stone <arstone@wustl.edu>
+Description: A package to work with candidates and delegate counts for the 2016 presidential election. Functions to calculate delegate counts, remaining delegates, and compare candidate delegate counts.
+License: GPL (>= 2)
 RoxygenNote: 5.0.1
+Suggests:
+    devtools
+Collate:
+    'Candidate.R'
+    'candidatePack-package.r'
+    'createCandidate.R'
+    'neededCalculator.R'
+    'propNeeded.R'

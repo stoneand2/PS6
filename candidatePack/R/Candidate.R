@@ -24,15 +24,27 @@ setClass(Class="Candidate",
                    ),
          prototype = prototype(
                    name = "",
-                   delegatesWon = c(),
+                   delegatesWon = numeric(),
                    party = "",
-                   delegatesNeeded = c()
+                   delegatesNeeded = numeric()
                    )
 )
 
 #' @export
 setMethod("initialize", "Candidate", 
-          function(.Object, ...){
+          function(.Object, name, delegatesWon, party){
+            .Object@name <- name
+            .Object@party <- party
+            .Object@delegatesWon <- delegatesWon
+            if(party=="Republican"){
+              .Object@delegatesNeeded <- 1237
+            }
+            if(party=="Democratic"){
+              .Object@delegatesNeeded <- 2383
+            }
+            if(party!="Democratic" & party!="Republican"){
+              stop("Please specify the party properly with either the string 'Democratic' or 'Republican'")
+            }
             value=callNextMethod()
             return(value)
           }

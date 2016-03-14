@@ -29,7 +29,7 @@ load_all(current.code)
 document(current.code)
 
 
-# romney <- Candidate(name="Romney",delegatesWon=22, party="Republican", delegatesNeeded=1298)
+# romney <- new("Candidate", name="Romney",delegatesWon=22, party="Republican")
 
 # Function to help user create a candidate
 setGeneric(name="createCandidate",
@@ -40,13 +40,13 @@ setGeneric(name="createCandidate",
 setMethod(f="createCandidate",
           definition=function(name, delegatesWon, party){
             return(new("Candidate", name=name, delegatesWon = delegatesWon, 
-                       party = party, delegatesNeeded=neededCalculator(party)))
+                       party = party))
           }
 )
 
 # candidate.webb <- createCandidate("Webb", 0, "Democratic")
 
-# Function that is called in order to calculate delegates needed
+# Function that can be called to display delegates needed
 setGeneric(name="neededCalculator",
            def=function(party)
            {standardGeneric("neededCalculator")}
