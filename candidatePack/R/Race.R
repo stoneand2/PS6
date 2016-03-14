@@ -1,4 +1,25 @@
-# Creating Race class
+#' A Race object 
+#' 
+#' Obects of class \code{Race} help summarize the standing of the current presidential races. These
+#' objects have their own \code{plot} method.
+#'
+#' 
+#' An object of the class `Race' has the following slots:
+#' \itemize{
+#' \item \code{candidates} A list of objects of class `Candidate'. These candidates should all 
+#' be from the same political party.
+#' \item \code{party} The party of the presidential candidates listed in candidates, either 
+#' `Democratic' or `Republican'.
+#' \item \code{delegatesNeeded} The number of delegates the presidential candidate needs to 
+#' secure to win his party's nomination.
+#' \item \code{delegatesRemaining} The number of delegates that have yet to be allocated to a 
+#' candidate. 
+#' }
+#'
+#' @author Andy Stone: \email{arstone@@wustl.edu}
+#' @aliases Race-class initialize,Race-method plot,Race-method 
+#' @rdname Race
+#' @export
 Race <- setClass(Class="Race", 
                       slots = c(
                         candidates = "list",
@@ -22,12 +43,12 @@ setMethod("initialize", "Race",
             .Object@party <- party
             if(party=="Republican"){
               alloted <- sum(sapply(1:length(candidates), FUN=function(i) candidates[[i]]@delegatesWon))
-              .Object@delegatesRemaining <- 1237 - alloted
+              .Object@delegatesRemaining <- 2472 - alloted
               .Object@delegatesNeeded <- 1237
             }
             if(party=="Democratic"){
               alloted <- sum(sapply(1:length(candidates), FUN=function(i) candidates[[i]]@delegatesWon))
-              .Object@delegatesRemaining <- 2383 - alloted
+              .Object@delegatesRemaining <- 4765 - alloted
               .Object@delegatesNeeded <- 2383
             }
             if(party!="Democratic" & party!="Republican"){
@@ -43,42 +64,61 @@ setMethod(f="plot",
           # Class the method is used for
           signature="Race",
           # The method itself
-          definition=function(x, y, object, ...){
+          definition=function(x=NULL, y=x, ...){
             plot(x=NULL,
                  y=NULL,
                  xaxt="n",
-                 xlim=c(0, length(object@candidates)),
-                 ylim=c(0, max((object@delegatesRemaining + 100), (object@delegatesNeeded + 100))), 
+                 xlim=c(0, length(x@candidates)),
+                 ylim=c(0, max((x@delegatesRemaining + 100), (x@delegatesNeeded + 100))), 
                  xlab="Candidates",
                  ylab="Delegates Won", 
-                 main=paste("Delegate Count:", object@party, "Party", sep=" "), 
+                 main=paste("Delegate Count:", x@party, "Party", sep=" "), 
                  cex.main=1)
-                if(object@party == "Democratic"){
+                if(x@party == "Democratic"){
                   colors <- c("deepskyblue","deepskyblue4")
                   } 
-                if(object@party == "Republican"){
+                if(x@party == "Republican"){
                   colors <- c("red1","red2","red3","red4")
                 }
-                points(1:length(object@candidates) - 0.5, sapply(1:length(object@candidates), 
-                    FUN=function(i) object@candidates[[i]]@delegatesWon), pch=c(16:19), col=colors)
-                names <- sapply(1:length(object@candidates), 
-                    FUN=function(i) object@candidates[[i]]@name)
-                axis(side=1, labels=names, at=1:length(object@candidates) - 0.5)
-                abline(h=object@delegatesNeeded, lty=2)
-                abline(h=object@delegatesRemaining, lty=2)
+                points(1:length(x@candidates) - 0.5, sapply(1:length(x@candidates), 
+                    FUN=function(i) x@candidates[[i]]@delegatesWon), pch=c(16:19), col=colors)
+                names <- sapply(1:length(x@candidates), 
+                    FUN=function(i) x@candidates[[i]]@name)
+                axis(side=1, labels=names, at=1:length(x@candidates) - 0.5)
+                abline(h=x@delegatesNeeded, lty=2)
+                abline(h=x@delegatesRemaining, lty=2)
             
-                text(length(object@candidates) - 0.5, object@delegatesNeeded - 200, 
+                text(length(x@candidates) - 0.5, x@delegatesNeeded - (x@delegatesNeeded / 9), 
                      labels="Delegates Needed \n for Nomination", cex=0.7)
-                arrows(x0=length(object@candidates) - 0.5, y0=object@delegatesNeeded - 135, 
-                       x1 = length(object@candidates) - 0.8, y1 = object@delegatesNeeded-10,
+                arrows(x0=length(x@candidates) - 0.5, y0=x@delegatesNeeded - 135, 
+                       x1 = length(x@candidates) - 0.8, y1 = x@delegatesNeeded-10,
                        length=0.1)
-                arrows(x0= 0.5, y0=object@delegatesRemaining - 135, 
-                       x1 = 0.8, y1 = object@delegatesRemaining-10,
+                arrows(x0= 0.5, y0=x@delegatesRemaining - 135, 
+                       x1 = 0.8, y1 = x@delegatesRemaining-10,
                        length=0.1)
-                text(0.5, object@delegatesRemaining - 200, 
+                text(0.5, x@delegatesRemaining - (x@delegatesRemaining / 9), 
                  labels="Delegates Yet \n to Be Allocated", cex=0.7)
           }   
 )
+
+# cruz <- new("Candidate", name="Cruz", delegatesWon=372, party="Republican")
+# trump <- new("Candidate", name="Trump", delegatesWon=464, party="Republican")
+# kasich <- new("Candidate", name="Kasich", delegatesWon=63, party="Republican")
+# rubio <- new("Candidate", name="Rubio", delegatesWon=166, party="Republican")
+# 
+# republican.candidates <- list(cruz, trump, kasich, rubio)
+# republican.race <- new("Race", candidates=republican.candidates, party="Republican")
+# plot(x=republican.race)
+
+# sanders <- new("Candidate", name="Sanders", delegatesWon=576, party="Democratic")
+# clinton <- new("Candidate", name="Clinton", delegatesWon=1239, party="Democratic")
+
+# democratic.candidates <- list(sanders, clinton)
+# democratic.race <- new("Race", candidates=democratic.candidates, party="Democratic")
+# plot(x=democratic.race)
+
+
+
 
 
 
