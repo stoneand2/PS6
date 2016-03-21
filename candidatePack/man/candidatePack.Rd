@@ -9,11 +9,7 @@
 The candidatePack package allows the user to examine delegate counts for the 2016 presidential election.
 }
 \examples{
-
-\dontrun{
-demo(createCandidate)
-demo(propNeeded)
-}
+createCandidate("Jim Webb", 0, "Democratic")
 
 }
 \author{

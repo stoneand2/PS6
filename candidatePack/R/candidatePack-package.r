@@ -5,10 +5,6 @@
 #' @docType package
 #' @author  Andy Stone: \email{arstone@@wustl.edu}
 #' @examples 
-#'
-#' \dontrun{
-#' demo(createCandidate)
-#' demo(propNeeded)
-#' }
+#' createCandidate("Jim Webb", 0, "Democratic")
 #'
 NULL
